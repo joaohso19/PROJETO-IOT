@@ -7,7 +7,7 @@ Este projeto consiste em uma API REST desenvolvida em Node.js para gerenciar dad
 ### 1.1) O que é uma API?
 API é a sigla para Application Programming Interface (Interface de Programação de Aplicações). Imagine que ela seja uma ponte ou um tradutor que permite que dois softwares diferentes "conversem" entre si, sem que um precise conhecer os detalhes internos do outro. Ela define regras e padrões para que essa comunicação seja segura e eficiente.
 
-Uma analogia prática é o **Cardápio de uma Cafeteria**. Você (o cliente/front-end) olha o cardápio (API) e faz um pedido específico. Você não entra na cozinha para ligar a máquina de café ou moer os grãos; você entrega seu pedido ao atendente, que leva a instrução para a cozinha (servidor) e traz seu café pronto. A API é esse cardápio e o protocolo de pedido.
+Um exemplo comum é a prática do **Cardápio de uma Cafeteria**. Você (o cliente/front-end) olha o cardápio (API) e faz um pedido específico. Você não entra na cozinha para ligar a máquina de café ou moer os grãos; você entrega seu pedido ao atendente, que leva a instrução para a cozinha (servidor) e traz seu café pronto. A API é esse cardápio e o protocolo de pedido.
 
 ### 1.2) O que é REST?
 REST (Representational State Transfer) é um conjunto de "boas práticas" ou restrições de arquitetura para a criação de APIs que utilizam o protocolo HTTP. Uma API que segue esses princípios é chamada de RESTful. O foco do REST é tratar tudo como um "recurso" (no nosso caso, os dados dos sensores) que pode ser acessado através de URLs amigáveis.
