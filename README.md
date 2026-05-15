@@ -62,7 +62,8 @@ JSON (JavaScript Object Notation) é um formato leve de troca de dados, fácil d
     Rota: GET /api/dados/:id
 
     Parâmetros: id (na URL)
-
+   
+    Exemplo:
     Resposta Erro: Status 404 | {"mensagem": "ID não encontrado!"}
 ---
 <img width="1539" height="910" alt="image" src="https://github.com/user-attachments/assets/f4732008-bb0c-442c-85bd-75771ec51085" />
