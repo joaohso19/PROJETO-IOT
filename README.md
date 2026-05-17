@@ -131,6 +131,5 @@ API --[JSON/HTTP]--> Postman/Client]
 4.3) Reflexão
 
 Na realização da atividade, tive apenas dificuldades na escrita do código, isso se deve pelo fato de que estamos no ínicio dos estudos sobre Python, essa transicação para o JavaScript foi desafiadora por conta de possuir uma sintaxe mais "complexa/confusa", ela frequentemente não força boas práticas, permitindo erros que se tornam difíceis de depurar mais tarde.
-Em geral, gostei muito da atividade realizada junto do professor Platini, vimos tão pouco ainda sobre JS, mas demonstou ser uma linguagem muito interessante e que na qual aprofundaremos mais ao longo do curos. 
-
+Em geral, gostei muito da atividade realizada junto do professor Platini, vimos tão pouco ainda sobre JS, mas demonstou ser uma linguagem muito interessante e que na qual aprofundaremos mais ao longo do curso.
 
