@@ -94,9 +94,60 @@ JSON (JavaScript Object Notation) é um formato leve de troca de dados, fácil d
 ---
 ## PARTE 3 — DIAGRAMA DA ARQUITETURA
 
-ESP32 (Sensores) --[POST/HTTP]--> API (Node.js) <--> Banco de Dados (Memória)
-API --[JSON/HTTP]--> Postman/Client]
+Abaixo está o diagrama detalhado do fluxo de dados do sistema, desde a captura pelos sensores no ESP32 até a visualização nos clientes (Postman/App), passando pela nossa API Node.js.
+```mermaid
+graph TD
+    %% Definição de Subgraphs por Camadas Lógicas
+    subgraph Camada_Hardware [Camada de Hardware - Coleta IoT]
+        DHT22[Sensor de Clima DHT22]
+        ESP32[Microcontrolador ESP32]
+        DHT22 -->|Leitura de Sinais Analógicos / Digitais| ESP32
+    end
 
+    subgraph Camada_Rede [Camada de Transporte / Rede]
+        WiFi((Rede Sem Fio <br> Wi-Fi / Internet))
+        Payload[HTTP POST /api/dados <br> Formato: JSON Payload]
+        ESP32 -->|Conecta via Socket| WiFi
+        WiFi -->|Dispara Requisições| Payload
+    end
+
+    subgraph Camada_API [Servidor Backend - Node.js & Express]
+        Server[App Express Server <br> Escutando Porta 3000]
+        Middlewares{Middlewares V8 <br> Cors / JSON Parser}
+        Routes[Mecanismo de Rotas <br> /api/dados]
+        
+        Payload -->|Chega no Host| Server
+        Server --> Middlewares
+        Middlewares --> Routes
+    end
+
+    subgraph Camada_Persistencia [Camada de Persistência Volátil]
+        MemoryDB[(Banco de Dados em Memória <br> Array JavaScript Estático)]
+        Routes -->|Operações de Manipulação| MemoryDB
+    end
+
+    subgraph Camada_Clientes [Clientes de Consumo & Testes]
+        Postman[Postman API Client]
+        Dashboard[Web Dashboard / App Front-End]
+        
+        Postman -->|Requisições HTTP <br> GET, POST, PUT, DELETE| Server
+        Dashboard -->|Requisições HTTP <br> GET de Monitoramento| Server
+        MemoryDB -.->|Retorna JSON + Status 200/201| Postman
+        MemoryDB -.->|Retorna JSON Atualizado| Dashboard
+    end
+
+    %% Customização Visual e Estilização de Nós (Cores Desaturadas Profissionais)
+    style Camada_Hardware fill:#e1f5fe,stroke:#01579b,stroke-width:2px,color:#01579b
+    style Camada_Rede fill:#eceff1,stroke:#37474f,stroke-width:2px,color:#37474f
+    style Camada_API fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px,color:#1b5e20
+    style Camada_Persistencia fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#e65100
+    style Camada_Clientes fill:#f3e5f5,stroke:#4a148c,stroke-width:2px,color:#4a148c
+    
+    style ESP32 fill:#b3e5fc,stroke:#0288d1,stroke-width:1px
+    style Server fill:#c8e6c9,stroke:#388e3c,stroke-width:1px
+    style MemoryDB fill:#ffe0b2,stroke:#f57c00,stroke-width:1px
+```
+    O diagrama ilustra como o ESP32 envia dados (POST) para a API, que os armazena em memória. Os clientes podem então ler (GET), atualizar (PUT) ou deletar (DELETE) esses dados através dos endpoints definidos.
 ## PARTE 4 — COMO RODAR E REFLEXÃO
 4.1) Como Rodar
 
